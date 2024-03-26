@@ -35,9 +35,7 @@ const LoginPage = () => {
         email,
         password,
       });
-
-      console.log("res : ", res);
-
+      
       setIsFailed(false);
       setTimerStarts(true);
 
