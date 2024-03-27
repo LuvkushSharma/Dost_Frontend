@@ -1,5 +1,7 @@
 import "./heading.css";
+import React, { useState, useEffect } from "react";
 
+import 
 const Heading = () => {
   return (
     <div className="loader">
