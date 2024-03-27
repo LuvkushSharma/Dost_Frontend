@@ -23,7 +23,7 @@ const SuggestionPage = () => {
     const fetchSuggestions = async () => {
       try {
         setLoading(true);
-        const res = await axios.get(`${baseUrl}/api/v1/users/suggest`);
+        const res = await axios.get(`${baseUrl}/api/v1/users/suggest`, { withCredentials: true });
         const usersArray = Object.values(res.data.data);
         setSuggestedUsers(usersArray);
         setLoading(false);
@@ -37,7 +37,7 @@ const SuggestionPage = () => {
 
   const handleRequestFriendship = async (userId) => {
     try {
-      const res = await axios.post(`${baseUrl}/api/v1/users/friend-request`, { userId });
+      const res = await axios.post(`${baseUrl}/api/v1/users/friend-request`, { userId }, { withCredentials: true });
 
       console.log("Friend Request kaise ho : ", res.data);
 
@@ -53,7 +53,7 @@ const SuggestionPage = () => {
 
   const handleRemoveFromSuggestions = async (userId) => {
     try {
-      const res = await axios.delete(`${baseUrl}/api/v1/users/suggest/${userId}`);
+      const res = await axios.delete(`${baseUrl}/api/v1/users/suggest/${userId}`, { withCredentials: true });
       const updatedSuggestions = suggestedUsers.filter(
         (user) => user._id !== userId
       );
