@@ -28,7 +28,7 @@ const ResetPassword = () => {
         oldPassword,
         newPassword,
         confirmPassword,
-      });
+      }, { withCredentials: true });
 
       // If reset password is successful, set resetSuccess to true
       setResetSuccess(true);
