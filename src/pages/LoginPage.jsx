@@ -19,7 +19,7 @@ const LoginPage = () => {
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        const res = await axios.get(`${baseUrl}/api/v1/users/checkAuth`);
+        const res = await axios.get(`${baseUrl}/api/v1/users/checkAuth` , { withCredentials: true });
         navigate("/otp", { replace: true });
       } catch (error) {
         // console.error("User is not logged in");
@@ -34,7 +34,7 @@ const LoginPage = () => {
       const res = await axios.post(`${baseUrl}/api/v1/users/login`, {
         email,
         password,
-      });
+      } , { withCredentials: true });
       
       setIsFailed(false);
       setTimerStarts(true);
