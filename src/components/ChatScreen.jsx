@@ -134,7 +134,7 @@ const ChatScreen = ({ selectedFriend, sender }) => {
       const fetchChats = async () => {
         try {
           const response = await axios.get(
-            `${baseUrl}/api/v1/users/chats/${selectedFriend.id}`
+            `${baseUrl}/api/v1/users/chats/${selectedFriend.id}`, { withCredentials: true }
           );
 
           const { chats } = response.data.data;
@@ -269,7 +269,7 @@ const ChatScreen = ({ selectedFriend, sender }) => {
           receiverId,
           oldMessage: msg,
           newMessage: editedMessage,
-        });
+        }, { withCredentials: true });
 
         if (res.status === 200) {
           if (senderId === sender.senderId) {
@@ -317,7 +317,7 @@ const ChatScreen = ({ selectedFriend, sender }) => {
 
       const res = await axios.delete(`${baseUrl}/api/v1/users/chats/delete`, {
         data: { senderId, receiverId, message },
-      });
+      }, { withCredentials: true });
 
       if (res.status === 204) {
         if (senderId === sender.senderId) {
@@ -343,7 +343,7 @@ const ChatScreen = ({ selectedFriend, sender }) => {
         .post(`${baseUrl}/api/v1/users/pay`, {
           token: token.id,
           amount: totalAmount,
-        })
+        }, { withCredentials: true })
         .then((response) => {
           // console.log(response);
         })
