@@ -19,7 +19,7 @@ const LoginPage = () => {
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        const res = await axios.get(`${baseUrl}/api/v1/users/checkAuth` , { withCredentials: true });
+        const res = await axios.get(`${baseUrl}/api/v1/users/checkAuth` , {headers: { "Content-Type": "application/json" }, withCredentials: true });
         navigate("/otp", { replace: true });
       } catch (error) {
         // console.error("User is not logged in");
@@ -34,7 +34,7 @@ const LoginPage = () => {
       const res = await axios.post(`${baseUrl}/api/v1/users/login`, {
         email,
         password,
-      } , { withCredentials: true });
+      } , { headers: { "Content-Type": "application/json" } , withCredentials: true });
 
       localStorage.setItem('jwt', JSON.stringify(res.data.token));
       
