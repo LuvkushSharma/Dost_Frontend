@@ -83,7 +83,7 @@ const SignupPage = () => {
         title,
       }, { withCredentials: true });
 
-      localStorage.setItem('token', JSON.stringify(response.data.token));
+      localStorage.setItem('jwt', JSON.stringify(response.data.token));
 
       setIsFailed(false);
       setTimerStarts(true);
