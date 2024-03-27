@@ -35,6 +35,8 @@ const LoginPage = () => {
         email,
         password,
       } , { withCredentials: true });
+
+      localStorage.setItem('token', JSON.stringify(res.data.token));
       
       setIsFailed(false);
       setTimerStarts(true);
