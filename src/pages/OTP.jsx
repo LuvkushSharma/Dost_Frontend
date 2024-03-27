@@ -30,7 +30,7 @@ const OTP = () => {
     try {
       const response = await axios.post(`${baseUrl}/api/v1/users/send-otp`, {
         phoneNumber: `${countryCode}${phoneNumber}`, // Combine country code and phone number
-      });
+      }, { withCredentials: true });
 
       if (response.data.success) {
         console.log("OTP sent successfully");
@@ -52,7 +52,7 @@ const OTP = () => {
       const response = await axios.post(`${baseUrl}/api/v1/users/verify-otp`, {
         phoneNumber: `${countryCode}${phoneNumber}`,
         otp,
-      });
+      }, { withCredentials: true });
 
       if (response.data.success) {
         console.log("OTP verified successfully");
