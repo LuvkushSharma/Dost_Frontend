@@ -14,7 +14,7 @@ const LoginPage = () => {
   const [isFailed, setIsFailed] = useState(false);
   const [timerStarts, setTimerStarts] = useState(false);
 
-  const baseUrl = process.env.BACKEND_API_URL;
+  const baseUrl = "https://dost-backend.onrender.com";
 
   useEffect(() => {
     const checkAuth = async () => {
