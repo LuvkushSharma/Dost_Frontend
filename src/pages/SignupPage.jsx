@@ -81,7 +81,7 @@ const SignupPage = () => {
         hobbies,
         participatedInHackathon,
         title,
-      });
+      }, { withCredentials: true });
 
       setIsFailed(false);
       setTimerStarts(true);
