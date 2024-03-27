@@ -24,7 +24,7 @@ const ForgetPassword = () => {
       setLoading(true);
       const res = await axios.post(`${baseUrl}/api/v1/users/forgotPassword`, {
         email,
-      });
+      }, { withCredentials: true });
 
       setLoading(false);
       setTimerStarts(true);
