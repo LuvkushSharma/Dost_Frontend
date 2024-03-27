@@ -27,7 +27,7 @@ const Contact = () => {
       .post(`${baseUrl}/api/v1/users/contact`, {
         name,
         message,
-      })
+      }, { withCredentials: true })
       .then((response) => {
         console.log(response);
       })
