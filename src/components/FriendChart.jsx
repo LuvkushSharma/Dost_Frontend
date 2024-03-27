@@ -29,7 +29,7 @@ const FriendChart = () => {
   useEffect(() => {
     const fetchFriendCounts = async () => {
       try {
-        const response = await axios.get(`${baseUrl}/api/v1/users/friend-counts`);
+        const response = await axios.get(`${baseUrl}/api/v1/users/friend-counts`, { withCredentials: true });
         setFriendCounts(response.data.data);
       } catch (error) {
         console.error("Error fetching friend counts:", error);
