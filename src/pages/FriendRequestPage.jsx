@@ -21,7 +21,7 @@ const FriendRequestPage = () => {
   useEffect(() => {
     const fetchFriendRequests = async () => {
       try {
-        const res = await axios.get(`${baseUrl}/api/v1/users/requests`);
+        const res = await axios.get(`${baseUrl}/api/v1/users/requests` , { withCredentials: true });
 
         setFriendRequests(res.data.data);
       } catch (error) {
@@ -36,7 +36,7 @@ const FriendRequestPage = () => {
     try {
       const res = await axios.post(`${baseUrl}/api/v1/users/requestAccepted`, {
         userId: senderId,
-      });
+      }, { withCredentials: true });
 
       if (res.data.success === true) {
         setIsAccepted(true);
@@ -49,7 +49,7 @@ const FriendRequestPage = () => {
 
   const handleRejectFriendRequest = async (senderId) => {
     try {
-      const res = await axios.delete(`${baseUrl}/api/v1/users/request/${senderId}`);
+      const res = await axios.delete(`${baseUrl}/api/v1/users/request/${senderId}`, { withCredentials: true });
       const updatedFriendRequests = friendRequests.filter(
         (request) => request.sender._id !== senderId
       );
