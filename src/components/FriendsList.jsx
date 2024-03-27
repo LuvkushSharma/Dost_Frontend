@@ -49,7 +49,7 @@ const FriendList = ({ onSelectFriend, setSender }) => {
   useEffect(() => {
     const fetchFriendRequests = async () => {
       try {
-        const res = await axios.get(`${baseUrl}/api/v1/users/friendsList`);
+        const res = await axios.get(`${baseUrl}/api/v1/users/friendsList`, { withCredentials: true });
 
         const senderData = res.data.data.filter(
           (friend) =>
