@@ -21,7 +21,8 @@ const OTP = () => {
 
   const navigate = useNavigate();
 
-  const baseUrl = "https://dost-backend.onrender.com";
+  // const baseUrl = "https://dost-backend.onrender.com";
+  const baseUrl = process.env.BACKEND_API_URL;
 
   const handleSendOTP = async () => {
     setIsSendingOTP(true);
