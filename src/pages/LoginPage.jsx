@@ -38,8 +38,6 @@ const LoginPage = () => {
 
       console.log(res);
 
-      localStorage.setItem('jwt', JSON.stringify(res.data.token));
-      
       setIsFailed(false);
       setTimerStarts(true);
 
