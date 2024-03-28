@@ -36,6 +36,8 @@ const LoginPage = () => {
         password,
       } , { headers: { "Content-Type": "application/json" } , withCredentials: true });
 
+      console.log(res);
+
       localStorage.setItem('jwt', JSON.stringify(res.data.token));
       
       setIsFailed(false);
