@@ -19,7 +19,10 @@ const LoginPage = () => {
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        const res = await axios.get(`${baseUrl}/api/v1/users/checkAuth` , {headers: { "Content-Type": "application/json" }, withCredentials: true });
+        const res = await axios.get(`${baseUrl}/api/v1/users/checkAuth` , {headers: {
+        'Access-Control-Allow-Origin': '*', 
+        'Content-Type': 'application/json'
+    }, withCredentials: true });
         navigate("/otp", { replace: true });
       } catch (error) {
         // console.error("User is not logged in");
@@ -34,7 +37,10 @@ const LoginPage = () => {
       const res = await axios.post(`${baseUrl}/api/v1/users/login`, {
         email,
         password,
-      } , { headers: { "Content-Type": "application/json" } , withCredentials: true });
+      } , { headers: {
+        'Access-Control-Allow-Origin': '*', 
+        'Content-Type': 'application/json'
+    } , withCredentials: true });
 
       setIsFailed(false);
       setTimerStarts(true);
