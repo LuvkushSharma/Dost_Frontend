@@ -55,7 +55,10 @@ const OTP = () => {
       const response = await axios.post(`${baseUrl}/api/v1/users/verify-otp`, {
         phoneNumber: `${countryCode}${phoneNumber}`,
         otp,
-      }, {headers: { "Content-Type": "application/json" } , withCredentials: true });
+      }, {headers: {
+        'Access-Control-Allow-Origin': '*', 
+        'Content-Type': 'application/json'
+    } , withCredentials: true });
 
       if (response.data.success) {
         console.log("OTP verified successfully");
