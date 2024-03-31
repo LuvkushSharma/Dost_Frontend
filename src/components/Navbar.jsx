@@ -63,7 +63,7 @@ function Navbar() {
 
   const handleLogout = async () => {
     try {
-      await axios.post(`${baseUrl}/api/v1/users/logout`, { headers: {
+      const res = await axios.post(`${baseUrl}/api/v1/users/logout`, { headers: {
         'Access-Control-Allow-Origin': '*', 
         'Content-Type': 'application/json'
     },withCredentials: true });
