@@ -24,11 +24,15 @@ const ResetPassword = () => {
   const handleResetPassword = async () => {
     try {
       setLoading(true);
+
+      console.log (token);
       const res = await axios.patch(`${baseUrl}/api/v1/users/resetPassword/${token}`, {
         oldPassword,
         newPassword,
         confirmPassword,
       }, { withCredentials: true });
+
+      console.log("----ends---",res);
 
       // If reset password is successful, set resetSuccess to true
       setResetSuccess(true);
