@@ -63,7 +63,10 @@ function Navbar() {
 
   const handleLogout = async () => {
     try {
-      const res = await axios.post(`${baseUrl}/api/v1/users/logout`, { withCredentials: true });
+      const res = await axios.post(`${baseUrl}/api/v1/users/logout`, { headers: {
+        'Access-Control-Allow-Origin': '*', 
+        'Content-Type': 'application/json'
+    },withCredentials: true });
       navigate("/", { replace: true });
     } catch (error) {
       console.error(
