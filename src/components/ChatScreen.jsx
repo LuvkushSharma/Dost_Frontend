@@ -317,7 +317,7 @@ const ChatScreen = ({ selectedFriend, sender }) => {
 
       const res = await axios.delete(`${baseUrl}/api/v1/users/chats/delete`, {
         data: { senderId, receiverId, message },
-      }, , { headers: {
+      }, { headers: {
         'Access-Control-Allow-Origin': '*', 
         'Content-Type': 'application/json'
     } , withCredentials: true });
