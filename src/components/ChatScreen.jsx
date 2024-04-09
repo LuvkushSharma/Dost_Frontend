@@ -315,9 +315,13 @@ const ChatScreen = ({ selectedFriend, sender }) => {
         receiverId = sender.senderId;
       }
 
+      console.log("handle delete starts");
+
       const res = await axios.delete(`${baseUrl}/api/v1/users/chats/delete`, {
         data: { senderId, receiverId, message },
       }, { withCredentials: true });
+
+      console.log("handle delete ends");
 
       if (res.status === 204) {
         if (senderId === sender.senderId) {
