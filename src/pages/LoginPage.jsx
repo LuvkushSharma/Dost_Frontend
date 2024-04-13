@@ -23,7 +23,8 @@ const LoginPage = () => {
         'Access-Control-Allow-Origin': '*', 
         'Content-Type': 'application/json'
     }, withCredentials: true });
-        navigate("/otp", { replace: true });
+        // navigate("/otp", { replace: true });
+        navigate("/home", { replace: true });
         
       } catch (error) {
         // console.error("User is not logged in");
@@ -48,7 +49,8 @@ const LoginPage = () => {
 
       setTimeout(() => {
         setTimerStarts(false);
-        navigate("/otp", { replace: true });
+        // navigate("/otp", { replace: true });
+        navigate("/home", { replace: true });
       }, 2000);
 
       // Redirect to the home page or perform other actions on successful login
