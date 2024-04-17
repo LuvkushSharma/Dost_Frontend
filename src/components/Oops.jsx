@@ -7,6 +7,7 @@ const Oops = () => {
         src="/videos/oops.mp4"
         autoPlay
         loop
+        muted
         style={{
           width: "100%", 
           height: "100vh", 
