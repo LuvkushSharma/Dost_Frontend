@@ -45,7 +45,7 @@ const titles = [
   "UI/UX Designer",
   "QA",
   "Cloud Engineer",
-  "Other",
+  "B.Tech Hons. Student",
 ];
 
 const SignupPage = () => {
