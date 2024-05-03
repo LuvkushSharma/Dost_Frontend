@@ -28,7 +28,7 @@ const ChatContainer = styled.div`
 `;
 
 const Header = styled.div`
-  background: linear-gradient(90deg, #1CB5E0 0%, #000851 100%);
+  background-color: #1a759f;
   color: #fff;
   padding: 10px;
   text-align: center;
