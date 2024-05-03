@@ -58,7 +58,7 @@ const InputContainer = styled.div`
   align-items: center;
   padding: 10px;
   width: 100%;
-  background-color: #0a0908;
+  background-image: linear-gradient( 178.7deg,  rgba(126,184,253,1) 5.6%, rgba(2,71,157,1) 95.3% );
 `;
 
 const InputBox = styled.input`
