@@ -15,12 +15,12 @@ const Container = styled.div`
 
 const FriendListContainer = styled.div`
   flex: 0 0 20vw; /* 30% width */
-  background-color: #343a40;
+  background-color: #023e8a;
 `;
 
 const ChatScreenContainer = styled.div`
   flex: 0 0 80vw; /* 70% width */
-  background-color: #212529;
+  background-color: #1a759f;
 `;
 
 const Chat = () => {
