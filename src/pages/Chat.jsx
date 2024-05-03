@@ -15,7 +15,7 @@ const Container = styled.div`
 
 const FriendListContainer = styled.div`
   flex: 0 0 20vw; /* 30% width */
-  background-color: #023e8a;
+  background-color: #c3cfe2;
 `;
 
 const ChatScreenContainer = styled.div`
