@@ -6,7 +6,7 @@ import styled from "styled-components";
 
 const FriendListContainer = styled.div`
   max-width: 100%;
-  background-color: #023e8a;
+  background: linear-gradient(90deg, #00C9FF 0%, #92FE9D 100%);
   overflow-y: auto;
 `;
 
