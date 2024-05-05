@@ -71,17 +71,18 @@ const MessageContainer = styled.div`
 
 const MessageItem = styled.div`
   margin-bottom: 10px;
-  text-align: ${(props) => (props.isSender ? "right" : "left")};
+  display: flex;
+  justify-content: ${(props) => (props.isSender ? "flex-end" : "flex-start")};
   padding: 5px;
   border-radius: 5px;
   border: 1px solid #14213d;
-  background-color: ${(props) => (props.isSender ? "#7CB9E8" : "#1560bd")};
-  color: ${(props) => (props.isSender ? "#fff" : "#000")};
+  background-color: ${(props) => (props.isSender ? "#6c757d" : "#343a40")};
 `;
 
 const TimeStamp = styled.span`
   font-size: 12px;
   color: #000000;
+  margin-left: 5px;
 `;
 
 const EmojiPickerContainer = styled.div`
@@ -376,7 +377,7 @@ const ChatScreen = ({ selectedFriend, sender }) => {
                   key={index}
                   isSender={msg.sender === sender.senderId}
                 >
-                  <div>
+                  <div style={{ display: "flex", alignItems: "center"}}>
                     <strong style={{ marginRight: "3px" }}>
                       {msg.sender === sender.senderId
                         ? "(You)"
