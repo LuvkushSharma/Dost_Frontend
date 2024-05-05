@@ -94,7 +94,7 @@ const Profile = () => {
   };
 
   return (
-    <Container maxWidth="lg" sx={{ mt: 5, bgcolor: "#adb5bd" }}>
+    <Container maxWidth="lg" sx={{ mt: 5, background: "linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 0%, rgba(0,212,255,1) 100%)"}}>
       <Box
         sx={{
           display: "flex",
@@ -110,7 +110,7 @@ const Profile = () => {
             p: 4,
             mb: 3,
             borderRadius: 10,
-            bgcolor: "#ced4da",
+            bgcolor: "#0096c7",
           }}
         >
           <CardContent>
