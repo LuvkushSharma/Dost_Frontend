@@ -16,6 +16,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import PaymentIcon from "@mui/icons-material/Payment";
 import Stripe from "react-stripe-checkout";
 import VideocamIcon from "@mui/icons-material/Videocam";
+import Markdown from 'react-markdown';
+import TextField from '@mui/material/TextField';
 
 // Socket initialization outside the component
 const socket = io("https://dost-backend.onrender.com");
@@ -59,14 +61,6 @@ const InputContainer = styled.div`
   padding: 10px;
   width: 100%;
   background-image: linear-gradient( 178.7deg,  rgba(126,184,253,1) 5.6%, rgba(2,71,157,1) 95.3% );
-`;
-
-const InputBox = styled.input`
-  flex: 1;
-  padding: 10px;
-  border: none;
-  border-radius: 5px;
-  outline: none;
 `;
 
 const MessageContainer = styled.div`
@@ -395,7 +389,7 @@ const ChatScreen = ({ selectedFriend, sender }) => {
                         onChange={(e) => setEditedMessage(e.target.value)}
                       />
                     ) : (
-                      <span style={{ marginRight: "4px" }}>{msg.message}</span>
+                      <Markdown style={{ marginRight: "4px" }}>{msg.message}</Markdown>
                     )}
                     <TimeStamp>
                       {calculateRelativeTime(msg.timestamp)}
@@ -447,11 +441,14 @@ const ChatScreen = ({ selectedFriend, sender }) => {
               <PaymentIcon style={{ color: "#fff" }} />
             </Stripe>
           </IconButton>
-          <InputBox
-            type="text"
+          <TextField
             value={message}
+            multiline
             onChange={handleInputChange}
+            fullWidth
+            variant="outlined"
             placeholder="Type your message..."
+            style={{ backgroundColor: "#ffffff", color: "#000000", borderRadius: "5px", outline : "none" , border : "none"}}
           />
           <SpeechRecognitionButton onClick={handleSpeechRecognition}>
             🎤
