@@ -63,7 +63,7 @@ const FriendRequestPage = () => {
   const str = "Friend request accepted successfully";
 
   return (
-    <Box sx={{ bgcolor: "#ced4da", minHeight: "100vh" }}>
+    <Box sx={{ background: "linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(45,178,253,1) 100%)", minHeight: "100vh" }}>
       <Typography
         variant="h3"
         align="center"
@@ -104,7 +104,7 @@ const FriendRequestPage = () => {
                 lg={3}
                 key={request._id}
               >
-                <Card sx={{ backgroundColor: "#495057", borderRadius: 4 }}>
+                <Card sx={{ backgroundColor: "#168aad", borderRadius: 4 }}>
                   <CardContent
                     sx={{ display: "flex", flexDirection: "column" }}
                   >
@@ -135,7 +135,7 @@ const FriendRequestPage = () => {
                     >
                       <Button
                         variant="contained"
-                        sx={{ backgroundColor: "#343a40", color: "#f5ebe0" }}
+                        sx={{ backgroundColor: "#5fa8d3", color: "#f5ebe0" }}
                         onClick={() =>
                           handleAcceptFriendRequest(request.sender._id)
                         }
@@ -144,7 +144,7 @@ const FriendRequestPage = () => {
                       </Button>
                       <Button
                         variant="outlined"
-                        sx={{ backgroundColor: "#8d99ae", color: "#f5ebe0" }}
+                        sx={{ backgroundColor: "#0d3b66", color: "#f5ebe0" }}
                         onClick={() =>
                           handleRejectFriendRequest(request.sender._id)
                         }
