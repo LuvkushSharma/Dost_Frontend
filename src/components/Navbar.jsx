@@ -95,7 +95,9 @@ function Navbar() {
   return (
     <AppBar
       position="static"
-      style={{ background: "#0a0908" }}
+      style={{
+         background: `linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(9, 9, 121, 1) 35%, rgba(0, 212, 255, 1) 100%)`,
+      }}
       enableColorOnDark
     >
       <Container maxWidth="xl">
@@ -135,7 +137,7 @@ function Navbar() {
             </Typography>
           </Link>
 
-          <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
+          <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" }}}>
             <Menu
               id="menu-appbar"
               anchorEl={anchorElNav}
@@ -165,7 +167,13 @@ function Navbar() {
           </Box>
           {!isMobile && (
             <Box
-              sx={{ flexGrow: 1, display: "flex", justifyContent: "center" }}
+              sx={{ flexGrow: 1, display: "flex", justifyContent: "center" , "& Button": {
+                  color: "white",
+                  "&:hover": {
+                    backgroundColor: "#00d4ff",
+                    color: "black",
+                  },
+                },}}
             >
               {pages.map((page) => (
                 <Button
