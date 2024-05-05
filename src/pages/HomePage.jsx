@@ -12,17 +12,20 @@ const HomeAuthenticatedPage = () => {
   return (
     <div>
       <Navbar />
-      <img
-        src="/images/back.jpg"
+      <video
+        src="/videos/background.mp4"
+        autoPlay
+        loop
+        muted
         style={{
-          position: "fixed",
+          width: "100vw", 
+          height: "100vh", 
+          objectFit: "cover",
+          position: "fixed", 
           top: 0,
           left: 0,
-          width: "100vw",
-          height: "100vh",
           zIndex: -1,
         }}
-        alt="Background"
       />
       <Box
         sx={{
@@ -44,7 +47,8 @@ const HomeAuthenticatedPage = () => {
               borderRadius: "25px",
               padding: "15px 30px",
               fontWeight: "bold",
-              backgroundColor: "#495057",
+              background:
+                "linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%)",
               margin: "20px",
               "&:hover": {
                 backgroundColor: "#000000", // Set background color to black on hover
@@ -61,7 +65,8 @@ const HomeAuthenticatedPage = () => {
               borderRadius: "25px",
               padding: "15px 30px",
               fontWeight: "bold",
-              backgroundColor: "#495057",
+              background:
+                "linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%)",
               "&:hover": {
                 backgroundColor: "#000000", // Set background color to black on hover
               },
