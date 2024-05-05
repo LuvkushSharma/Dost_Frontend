@@ -76,7 +76,7 @@ const MessageItem = styled.div`
   padding: 5px;
   border-radius: 5px;
   border: 1px solid #14213d;
-  background-color: ${(props) => (props.isSender ? "#6c757d" : "#343a40")};
+  background-color: ${(props) => (props.isSender ? "#7CB9E8" : "#1560bd")};
 `;
 
 const TimeStamp = styled.span`
