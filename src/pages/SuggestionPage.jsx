@@ -64,7 +64,7 @@ const SuggestionPage = () => {
   };
 
   return (
-    <Box sx={{ bgcolor: "#ced4da", minHeight: "100vh" }}>
+    <Box sx={{ background: "linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(45,178,253,1) 100%)", minHeight: "100vh" }}>
       <Typography
         variant="h3"
         align="center"
@@ -104,7 +104,7 @@ const SuggestionPage = () => {
           <Grid container spacing={3}>
             {suggestedUsers.map((user) => (
               <Grid item xs={12} sm={6} md={4} lg={3} key={user._id}>
-                <Card sx={{ backgroundColor: "#495057", borderRadius: 4 }}>
+                <Card sx={{ backgroundColor: "#168aad", borderRadius: 4 }}>
                   <CardContent
                     sx={{ display: "flex", flexDirection: "column" }}
                   >
@@ -143,7 +143,7 @@ const SuggestionPage = () => {
                     >
                       <Button
                         variant="contained"
-                        sx={{ backgroundColor: "#343a40", color: "#f5ebe0" }}
+                        sx={{ background: "linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 0%, rgba(0,212,255,1) 100%)", color: "#f5ebe0" }}
                         onClick={() => {
                           handleRequestFriendship(user._id);
                           setName(user.name);
@@ -153,7 +153,7 @@ const SuggestionPage = () => {
                       </Button>
                       <Button
                         variant="outlined"
-                        sx={{ backgroundColor: "#8d99ae", color: "#f5ebe0" }}
+                        sx={{ background: "linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,119,121,1) 0%, rgba(0,212,255,1) 100%)", color: "#f5ebe0" }}
                         onClick={() => handleRemoveFromSuggestions(user._id)}
                       >
                         Remove from Suggestions
