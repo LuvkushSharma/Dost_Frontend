@@ -7,8 +7,8 @@ function Room() {
   const { selectedFriend, sender } = location.state;
   
   const myMeeting = async (element) => {
-    const appID = 940175395;
-    const serverSecret = "247bf40936b3ac7842d23f7f42156059";
+    const appID = 154027292;
+    const serverSecret = "2703e824bbf11ec47818b44a8bd1d4e2";
     const roomID = [selectedFriend.id, sender.senderId].sort().join('');
     const kitToken = ZegoUIKitPrebuilt.generateKitTokenForTest(
       appID,
