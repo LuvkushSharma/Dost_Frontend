@@ -70,7 +70,7 @@ const FriendTitle = styled.p`
 const FriendList = ({ onSelectFriend, setSender }) => {
   const [friendsList, setFriendsList] = useState([]);
 
-  const baseUrl = "http://localhost:3000";
+  const baseUrl = "https://dost-backend.onrender.com";
 
   useEffect(() => {
     const fetchFriendRequests = async () => {
