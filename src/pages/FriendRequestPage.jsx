@@ -5,24 +5,26 @@ import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
 import Button from "@mui/material/Button";
-import SuccessfullAlert from "../components/SuccessfullAlert";
-import { Avatar } from "@mui/material"; // Import Avatar
-import { Box } from "@mui/system";
+import { Avatar, Box, Link } from "@mui/material";
 import AlertComponent from "../components/AlertComponent";
-import Link from "@mui/material/Link";
 
 const FriendRequestPage = () => {
   const [friendRequests, setFriendRequests] = useState([]);
   const [isAccepted, setIsAccepted] = useState(false);
   const [acceptedUserId, setAcceptedUserId] = useState("");
 
-  const baseUrl = "https://dost-backend.onrender.com";
+  const baseUrl = "http://localhost:3000";
 
   useEffect(() => {
     const fetchFriendRequests = async () => {
       try {
-        const res = await axios.get(`${baseUrl}/api/v1/users/requests` , { withCredentials: true });
-
+        const res = await axios.get(`${baseUrl}/api/v1/users/requests`, {
+          headers: {
+            "Access-Control-Allow-Origin": "*",
+            "Content-Type": "application/json",
+          },
+          withCredentials: true,
+        });
         setFriendRequests(res.data.data);
       } catch (error) {
         console.error("Error fetching friend requests:", error.message);
@@ -34,9 +36,19 @@ const FriendRequestPage = () => {
 
   const handleAcceptFriendRequest = async (senderId) => {
     try {
-      const res = await axios.post(`${baseUrl}/api/v1/users/requestAccepted`, {
-        userId: senderId,
-      }, { withCredentials: true });
+      const res = await axios.post(
+        `${baseUrl}/api/v1/users/requestAccepted`,
+        {
+          userId: senderId,
+        },
+        {
+          headers: {
+            "Access-Control-Allow-Origin": "*",
+            "Content-Type": "application/json",
+          },
+          withCredentials: true,
+        }
+      );
 
       if (res.data.success === true) {
         setIsAccepted(true);
@@ -49,7 +61,16 @@ const FriendRequestPage = () => {
 
   const handleRejectFriendRequest = async (senderId) => {
     try {
-      const res = await axios.delete(`${baseUrl}/api/v1/users/request/${senderId}`, { withCredentials: true });
+      const res = await axios.delete(
+        `${baseUrl}/api/v1/users/request/${senderId}`,
+        {
+          headers: {
+            "Access-Control-Allow-Origin": "*",
+            "Content-Type": "application/json",
+          },
+          withCredentials: true,
+        }
+      );
       const updatedFriendRequests = friendRequests.filter(
         (request) => request.sender._id !== senderId
       );
@@ -63,12 +84,18 @@ const FriendRequestPage = () => {
   const str = "Friend request accepted successfully";
 
   return (
-    <Box sx={{ background: "linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(45,178,253,1) 100%)", minHeight: "100vh" }}>
+    <Box
+      sx={{
+        background: "linear-gradient(to bottom right, #00203FFF, #ADEFD1FF)",
+        minHeight: "100vh",
+        padding: "20px",
+      }}
+    >
       <Typography
         variant="h3"
         align="center"
         gutterBottom
-        sx={{ fontWeight: "bold", color: "#343a40", padding: "20px" }}
+        sx={{ fontWeight: "bold", color: "#FFFFFF", padding: "20px" }}
       >
         Friend Requests
       </Typography>
@@ -86,10 +113,10 @@ const FriendRequestPage = () => {
               Oops! It seems like you're all caught up with friend requests for
               now.
               <br />
-              Why not{" "}
-              <Link href="/suggestions" underline="hover">
+              Why not
+              <Link href="/suggestions" underline="hover" sx={{ color: "#FFF" }}>
                 explore
-              </Link>{" "}
+              </Link>
               some new connections?
             </Typography>
           </Box>
@@ -98,16 +125,25 @@ const FriendRequestPage = () => {
             {friendRequests.map((request) => (
               <Grid
                 item
-                xs={12} // Occupy full width on extra small screens
+                xs={12}
                 sm={6}
                 md={4}
                 lg={3}
                 key={request._id}
+                sx={{ animation: "fadeInUp 0.5s ease-in-out" }}
               >
-                <Card sx={{ backgroundColor: "#168aad", borderRadius: 4 }}>
-                  <CardContent
-                    sx={{ display: "flex", flexDirection: "column" }}
-                  >
+                <Card
+                  sx={{
+                    background: "linear-gradient(to bottom right, #003366, #B2DCE8)",
+                    border: "1px solid #000000",
+                    borderRadius: 4,
+                    transition: "transform 0.3s",
+                    "&:hover": {
+                      transform: "scale(1.05)",
+                    },
+                  }}
+                >
+                  <CardContent sx={{ display: "flex", flexDirection: "column" }}>
                     <div style={{ display: "flex", alignItems: "center" }}>
                       <Avatar
                         src={
@@ -135,7 +171,15 @@ const FriendRequestPage = () => {
                     >
                       <Button
                         variant="contained"
-                        sx={{ backgroundColor: "#5fa8d3", color: "#f5ebe0" }}
+                        sx={{
+                          backgroundColor: "#000000",
+                          color: "#FFFFFF",
+                          transition: "background-color 0.3s, transform 0.3s",
+                          "&:hover": {
+                            backgroundColor: "#333333",
+                            transform: "scale(1.1)",
+                          },
+                        }}
                         onClick={() =>
                           handleAcceptFriendRequest(request.sender._id)
                         }
@@ -144,7 +188,16 @@ const FriendRequestPage = () => {
                       </Button>
                       <Button
                         variant="outlined"
-                        sx={{ backgroundColor: "#0d3b66", color: "#f5ebe0" }}
+                        sx={{
+                          borderColor: "#000000",
+                          color: "#000000",
+                          transition: "background-color 0.3s, transform 0.3s",
+                          "&:hover": {
+                            backgroundColor: "#000000",
+                            color: "#FFFFFF",
+                            transform: "scale(1.1)",
+                          },
+                        }}
                         onClick={() =>
                           handleRejectFriendRequest(request.sender._id)
                         }
