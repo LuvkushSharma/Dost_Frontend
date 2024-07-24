@@ -1,18 +1,16 @@
 @import url(//fonts.googleapis.com/css?family=Lato:300:400);
 
-
-
 .header {
   position:relative;
   text-align:center;
-  background: rgb(2,0,36);
-  background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);
-  color:white;
+  background: rgb(255,255,255); /* Set background to white */
+  color: black; /* Text color to black */
   overflow-y: hidden;
 }
+
 .logo {
   width:50px;
-  fill:white;
+  fill:black; /* Change logo color to black */
   padding-right:15px;
   display:inline-block;
   vertical-align: middle;
@@ -25,7 +23,7 @@
   padding: 0;
 }
 
-.flex { /*Flexbox for containers*/
+.flex { /* Flexbox for containers */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -36,7 +34,7 @@
   position:relative;
   width: 100%;
   height:15vh;
-  margin-bottom:-7px; /*Fix for safari gap*/
+  margin-bottom:-7px; /* Fix for safari gap */
   min-height:100px;
   max-height:150px;
 }
@@ -45,13 +43,13 @@
   position:relative;
   height:20vh;
   text-align:center;
-  background-color: white;
+  background-color: white; /* Content background color to white */
+  color: black; /* Content text color to black */
 }
 
 /* Animation */
-
 .parallax > use {
-  animation: move-forever 25s cubic-bezier(.55,.5,.45,.5)     infinite;
+  animation: move-forever 25s cubic-bezier(.55,.5,.45,.5) infinite;
 }
 .parallax > use:nth-child(1) {
   animation-delay: -2s;
@@ -77,7 +75,8 @@
     transform: translate3d(85px,0,0);
   }
 }
-/*Shrinking for mobile*/
+
+/* Shrinking for mobile */
 @media (max-width: 768px) {
   .waves {
     height:40px;
