@@ -24,9 +24,9 @@ const settings = ["Profile", "Logout"];
 
 const StyledButton = styled(Button)`
   position: relative;
-  color: grey;
+  color: white;
   &:hover {
-    color: grey;
+    color: white;
   }
   &:after {
     content: "";
