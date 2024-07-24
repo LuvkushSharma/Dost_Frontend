@@ -17,9 +17,32 @@ import { useMediaQuery } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { fetchUserData } from "./../helper/userAPI";
+import { styled } from "@mui/system";
 
 const pages = ["About Dost", "Contact Us", "Chat"];
 const settings = ["Profile", "Logout"];
+
+const StyledButton = styled(Button)`
+  position: relative;
+  color: grey;
+  &:hover {
+    color: grey;
+  }
+  &:after {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background: white;
+    transition: width 0.3s;
+    bottom: -5px;
+    left: 0;
+  }
+  &:hover:after {
+    width: 100%;
+  }
+`;
 
 function Navbar() {
   const navigate = useNavigate();
@@ -30,7 +53,7 @@ function Navbar() {
 
   const [image_url, setImageUrl] = useState("");
 
-  const baseUrl = "https://dost-backend.onrender.com";
+  const baseUrl = "http://localhost:3000";
 
   useEffect(() => {
     const fetchData = async () => {
@@ -63,7 +86,13 @@ function Navbar() {
 
   const handleLogout = async () => {
     try {
-      const res = await axios.get(`${baseUrl}/api/v1/users/logout`, {withCredentials: true});
+      const res = await axios.get(`${baseUrl}/api/v1/users/logout`, {
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+          'Content-Type': 'application/json',
+        },
+        withCredentials: true,
+      });
       navigate("/", { replace: true });
     } catch (error) {
       console.error(
@@ -74,7 +103,6 @@ function Navbar() {
   };
 
   const handlePageClick = (page) => {
-  
     if (page === "About Dost") {
       navigate("/about");
     } else if (page === "Contact Us") {
@@ -96,9 +124,9 @@ function Navbar() {
     <AppBar
       position="static"
       style={{
-         background: `linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(9, 9, 121, 1) 35%, rgba(0, 212, 255, 1) 100%)`,
+        backgroundColor: "black",
+        color: "white",
       }}
-      enableColorOnDark
     >
       <Container maxWidth="xl">
         <Toolbar
@@ -118,7 +146,7 @@ function Navbar() {
             </IconButton>
           )}
           <Diversity1Icon
-            sx={{ color: "#fefae0", display: { md: "flex" }, mr: 1 }}
+            sx={{ color: "#ffffff", display: { md: "flex" }, mr: 1 }}
           />
           <Link to="/home" style={{ textDecoration: "none" }}>
             <Typography
@@ -128,7 +156,7 @@ function Navbar() {
                 fontFamily: "monospace",
                 fontWeight: 700,
                 letterSpacing: ".3rem",
-                color: "#fefae0",
+                color: "#ffffff",
                 textAlign: "center",
                 margin: isMobile ? "auto" : "0", // Center text horizontally when isMobile is true
               }}
@@ -137,7 +165,7 @@ function Navbar() {
             </Typography>
           </Link>
 
-          <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" }}}>
+          <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
             <Menu
               id="menu-appbar"
               anchorEl={anchorElNav}
@@ -158,6 +186,7 @@ function Navbar() {
                   <Typography
                     textAlign="center"
                     onClick={() => handlePageClick(page)}
+                    style={{ color: "grey" }}
                   >
                     {page}
                   </Typography>
@@ -167,22 +196,12 @@ function Navbar() {
           </Box>
           {!isMobile && (
             <Box
-              sx={{ flexGrow: 1, display: "flex", justifyContent: "center" , "& Button": {
-                  color: "white",
-                  "&:hover": {
-                    backgroundColor: "#00d4ff",
-                    color: "black",
-                  },
-                },}}
+              sx={{ flexGrow: 1, display: "flex", justifyContent: "center" }}
             >
               {pages.map((page) => (
-                <Button
-                  key={page}
-                  onClick={() => handlePageClick(page)}
-                  sx={{ color: "white" }}
-                >
+                <StyledButton key={page} onClick={() => handlePageClick(page)}>
                   {page}
-                </Button>
+                </StyledButton>
               ))}
             </Box>
           )}
@@ -193,7 +212,7 @@ function Navbar() {
                 <Avatar
                   alt="Profile"
                   src={image_url || "/images/default.png"}
-                  sx={{ margin: "auto" }}
+                  sx={{ margin: "auto", border: "2px solid white" }}
                 />
               </IconButton>
             </Tooltip>
@@ -218,6 +237,7 @@ function Navbar() {
                   <Typography
                     textAlign="center"
                     onClick={() => handleSettingClick(setting)}
+                    style={{ color: "grey" }}
                   >
                     {setting}
                   </Typography>
@@ -230,4 +250,5 @@ function Navbar() {
     </AppBar>
   );
 }
+
 export default Navbar;
