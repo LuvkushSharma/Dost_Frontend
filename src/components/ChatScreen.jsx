@@ -16,30 +16,31 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import PaymentIcon from "@mui/icons-material/Payment";
 import Stripe from "react-stripe-checkout";
 import VideocamIcon from "@mui/icons-material/Videocam";
-import Markdown from 'react-markdown';
-import TextField from '@mui/material/TextField';
+import Markdown from "react-markdown";
+import TextField from "@mui/material/TextField";
 
 // Socket initialization outside the component
-const socket = io("https://dost-backend.onrender.com");
+const socket = io("http://localhost:3000");
 
 const ChatContainer = styled.div`
   width: 100%;
   height: 100vh;
   display: flex;
   flex-direction: column;
+  background-color: #121212;
 `;
 
 const Header = styled.div`
-  background: linear-gradient(90deg, #1CB5E0 0%, #000851 100%);
-  color: #fff;
+  background: linear-gradient(90deg, #000000 0%, #434343 100%);
+  color: #ffffff;
   padding: 10px;
   text-align: center;
 `;
 
 const VideoCallButton = styled.button`
-  background-color: #2b2d42;
+  background-color: #333333;
   border: none;
-  color: white;
+  color: #ffffff;
   padding: 10px 20px;
   text-align: center;
   text-decoration: none;
@@ -51,7 +52,7 @@ const VideoCallButton = styled.button`
   transition: background-color 0.3s ease;
 
   &:hover {
-    background-color: #14213d; /* Darker Green */
+    background-color: #444444;
   }
 `;
 
@@ -60,7 +61,7 @@ const InputContainer = styled.div`
   align-items: center;
   padding: 10px;
   width: 100%;
-  background-image: linear-gradient( 178.7deg,  rgba(126,184,253,1) 5.6%, rgba(2,71,157,1) 95.3% );
+  background-color: #333333;
 `;
 
 const MessageContainer = styled.div`
@@ -73,15 +74,24 @@ const MessageItem = styled.div`
   margin-bottom: 10px;
   display: flex;
   justify-content: ${(props) => (props.isSender ? "flex-end" : "flex-start")};
-  padding: 5px;
+  padding: 10px;
   border-radius: 5px;
-  border: 1px solid #14213d;
-  background-color: ${(props) => (props.isSender ? "#7CB9E8" : "#1560bd")};
+  background-color: ${(props) => (props.isSender ? "#444444" : "#555555")};
+  animation: fadeIn 0.5s ease;
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
 `;
 
 const TimeStamp = styled.span`
   font-size: 12px;
-  color: #000000;
+  color: #cccccc;
   margin-left: 5px;
 `;
 
@@ -98,7 +108,7 @@ const EmojiPickerButton = styled.button`
   border: none;
   cursor: pointer;
   font-size: 1.5rem;
-  color: #fff;
+  color: #ffffff;
 `;
 
 const SpeechRecognitionButton = styled.button`
@@ -106,7 +116,7 @@ const SpeechRecognitionButton = styled.button`
   border: none;
   cursor: pointer;
   font-size: 1.5rem;
-  color: #fff;
+  color: #ffffff;
 `;
 
 const ChatScreen = ({ selectedFriend, sender }) => {
@@ -121,7 +131,7 @@ const ChatScreen = ({ selectedFriend, sender }) => {
   const [editedMessage, setEditedMessage] = useState("");
   const [editIndex, setEditIndex] = useState(null);
 
-  const baseUrl = "https://dost-backend.onrender.com";
+  const baseUrl = "http://localhost:3000";
 
   useEffect(() => {
     // Fetch previous chats when the selected friend changes
@@ -129,7 +139,14 @@ const ChatScreen = ({ selectedFriend, sender }) => {
       const fetchChats = async () => {
         try {
           const response = await axios.get(
-            `${baseUrl}/api/v1/users/chats/${selectedFriend.id}`, { withCredentials: true }
+            `${baseUrl}/api/v1/users/chats/${selectedFriend.id}`,
+            {
+              headers: {
+                "Access-Control-Allow-Origin": "*",
+                "Content-Type": "application/json",
+              },
+              withCredentials: true,
+            }
           );
 
           const { chats } = response.data.data;
@@ -259,12 +276,22 @@ const ChatScreen = ({ selectedFriend, sender }) => {
 
     try {
       if (editedMessage) {
-        const res = await axios.put(`${baseUrl}/api/v1/users/chats/edit`, {
-          senderId,
-          receiverId,
-          oldMessage: msg,
-          newMessage: editedMessage,
-        }, { withCredentials: true });
+        const res = await axios.put(
+          `${baseUrl}/api/v1/users/chats/edit`,
+          {
+            senderId,
+            receiverId,
+            oldMessage: msg,
+            newMessage: editedMessage,
+          },
+          {
+            headers: {
+              "Access-Control-Allow-Origin": "*",
+              "Content-Type": "application/json",
+            },
+            withCredentials: true,
+          }
+        );
 
         if (res.status === 200) {
           if (senderId === sender.senderId) {
@@ -310,9 +337,14 @@ const ChatScreen = ({ selectedFriend, sender }) => {
         receiverId = sender.senderId;
       }
 
-      const res = await axios.delete(`${baseUrl}/api/v1/users/chats/delete`, 
-        {data: { senderId, receiverId, message },
-         withCredentials: true });
+      const res = await axios.delete(`${baseUrl}/api/v1/users/chats/delete`, {
+        data: { senderId, receiverId, message },
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+          "Content-Type": "application/json",
+        },
+        withCredentials: true,
+      });
 
       if (res.status === 204) {
         if (senderId === sender.senderId) {
@@ -335,10 +367,20 @@ const ChatScreen = ({ selectedFriend, sender }) => {
     // Add your logic for handling the click event here
     try {
       axios
-        .post(`${baseUrl}/api/v1/users/pay`, {
-          token: token.id,
-          amount: totalAmount,
-        }, { withCredentials: true })
+        .post(
+          `${baseUrl}/api/v1/users/pay`,
+          {
+            token: token.id,
+            amount: totalAmount,
+          },
+          {
+            headers: {
+              "Access-Control-Allow-Origin": "*",
+              "Content-Type": "application/json",
+            },
+            withCredentials: true,
+          }
+        )
         .then((response) => {
           // console.log(response);
         })
@@ -361,7 +403,7 @@ const ChatScreen = ({ selectedFriend, sender }) => {
         <Header>
           {selectedFriend && (
             <>
-              <h2>{selectedFriend.name}</h2>
+              <h1>Chat with {selectedFriend?.name}</h1>
               <VideoCallButton onClick={handleVideoCallClick}>
                 <VideocamIcon />
               </VideoCallButton>
@@ -377,7 +419,7 @@ const ChatScreen = ({ selectedFriend, sender }) => {
                   key={index}
                   isSender={msg.sender === sender.senderId}
                 >
-                  <div style={{ display: "flex", alignItems: "center"}}>
+                  <div style={{ display: "flex", alignItems: "center" }}>
                     <strong style={{ marginRight: "3px" }}>
                       {msg.sender === sender.senderId
                         ? "(You)"
@@ -390,7 +432,9 @@ const ChatScreen = ({ selectedFriend, sender }) => {
                         onChange={(e) => setEditedMessage(e.target.value)}
                       />
                     ) : (
-                      <Markdown style={{ marginRight: "4px" }}>{msg.message}</Markdown>
+                      <Markdown style={{ marginRight: "4px" }}>
+                        {msg.message}
+                      </Markdown>
                     )}
                     <TimeStamp>
                       {calculateRelativeTime(msg.timestamp)}
@@ -449,7 +493,13 @@ const ChatScreen = ({ selectedFriend, sender }) => {
             fullWidth
             variant="outlined"
             placeholder="Type your message..."
-            style={{ backgroundColor: "#ffffff", color: "#000000", borderRadius: "5px", outline : "none" , border : "none"}}
+            style={{
+              backgroundColor: "#ffffff",
+              color: "#000000",
+              borderRadius: "5px",
+              outline: "none",
+              border: "none",
+            }}
           />
           <SpeechRecognitionButton onClick={handleSpeechRecognition}>
             🎤
