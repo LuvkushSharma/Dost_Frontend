@@ -20,7 +20,7 @@ import Markdown from "react-markdown";
 import TextField from "@mui/material/TextField";
 
 // Socket initialization outside the component
-const socket = io("http://localhost:3000");
+const socket = io("https://dost-backend.onrender.com");
 
 const ChatContainer = styled.div`
   width: 100%;
@@ -131,7 +131,7 @@ const ChatScreen = ({ selectedFriend, sender }) => {
   const [editedMessage, setEditedMessage] = useState("");
   const [editIndex, setEditIndex] = useState(null);
 
-  const baseUrl = "http://localhost:3000";
+  const baseUrl = "https://dost-backend.onrender.com";
 
   useEffect(() => {
     // Fetch previous chats when the selected friend changes
