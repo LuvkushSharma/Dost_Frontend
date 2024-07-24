@@ -1,6 +1,6 @@
 import React from "react";
 import Navbar from "../components/Navbar";
-import { Button, Box } from "@mui/material";
+import { Button, Box, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import Wave from "../components/Wave/Wave";
 import Footer from "./Footer";
@@ -10,36 +10,29 @@ const HomeAuthenticatedPage = () => {
   const navigate = useNavigate();
 
   return (
-    <div>
+    <div style={{ minHeight: "100vh", background: "linear-gradient(to bottom right, #00203FFF, #ADEFD1FF)" }}>
       <Navbar />
-      <video
-        src="/videos/background.mp4"
-        autoPlay
-        loop
-        muted
-        style={{
-          width: "100vw", 
-          height: "100vh", 
-          objectFit: "cover",
-          position: "fixed", 
-          top: 0,
-          left: 0,
-          zIndex: -1,
-        }}
-      />
       <Box
         sx={{
           display: "flex",
-          alignItems: "flex-start", // Align items to the left
+          alignItems: "center",
           justifyContent: "center",
           minHeight: "100vh",
-          backgroundColor: "transparent",
           flexDirection: "column",
           gap: "20px",
+          textAlign: "center",
+          padding: "20px",
+          color: "#FFF"
         }}
       >
         <Heading />
-        <div style={{ marginTop: "70px", marginLeft: "20px" }}>
+        <Typography variant="h4" sx={{ marginBottom: "20px", fontWeight: "bold" }}>
+          Welcome to DOST
+        </Typography>
+        <Typography variant="h6" sx={{ marginBottom: "10px", fontWeight: "bold" }}>
+          Discover, connect, and build lasting friendships
+        </Typography>
+        <div style={{ marginTop: "30px" }}>
           <Button
             variant="contained"
             size="large"
@@ -47,11 +40,17 @@ const HomeAuthenticatedPage = () => {
               borderRadius: "25px",
               padding: "15px 30px",
               fontWeight: "bold",
-              background:
-                "linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%)",
-              margin: "20px",
+              backgroundColor: "#333", // Darker shade of black
+              color: "#FFF",
+              margin: "10px",
+              boxShadow: "0 4px 8px rgba(0,0,0,0.3)", // Add box shadow for depth
+              transition: "transform 0.3s, background-color 0.3s",
               "&:hover": {
-                backgroundColor: "#000000", // Set background color to black on hover
+                backgroundColor: "#555",
+                transform: "scale(1.1)",
+              },
+              "&:active": {
+                transform: "scale(0.9)",
               },
             }}
             onClick={() => navigate("/suggestions")}
@@ -65,10 +64,16 @@ const HomeAuthenticatedPage = () => {
               borderRadius: "25px",
               padding: "15px 30px",
               fontWeight: "bold",
-              background:
-                "linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%)",
+              backgroundColor: "#333",
+              color: "#FFF",
+              boxShadow: "0 4px 8px rgba(0,0,0,0.3)",
+              transition: "transform 0.3s, background-color 0.3s",
               "&:hover": {
-                backgroundColor: "#000000", // Set background color to black on hover
+                backgroundColor: "#555",
+                transform: "scale(1.1)",
+              },
+              "&:active": {
+                transform: "scale(0.9)",
               },
             }}
             onClick={() => navigate("/friendsRequests")}
