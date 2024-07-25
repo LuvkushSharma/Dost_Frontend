@@ -43,7 +43,7 @@ const ContactUs = () => {
   const [name, setName] = useState("");
   const [message, setMessage] = useState("");
 
-  const baseUrl = "http://localhost:3000";
+  const baseUrl = "https://dost-backend.onrender.com";
 
   const handleNameChange = (event) => {
     setName(event.target.value);
