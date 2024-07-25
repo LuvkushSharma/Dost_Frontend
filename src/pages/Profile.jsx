@@ -6,7 +6,6 @@ import {
   Chip,
   Button,
   Input,
-  Avatar,
   Grid,
   Container,
   Card,
@@ -27,7 +26,7 @@ const Profile = () => {
   const [imageUrl, setImageUrl] = useState("");
   const [uploading, setUploading] = useState(false);
 
-  const baseUrl = "https://dost-backend.onrender.com";
+  const baseUrl = "https://dost-backend.onrender.com/";
 
   useEffect(() => {
     const fetchData = async () => {
@@ -79,6 +78,10 @@ const Profile = () => {
         `${baseUrl}/api/v1/users/update`,
         { cloudinaryImageUrl },
         {
+          headers: {
+            "Access-Control-Allow-Origin": "*",
+            "Content-Type": "application/json",
+          },
           withCredentials: true,
         }
       );
@@ -94,7 +97,16 @@ const Profile = () => {
   };
 
   return (
-    <Container maxWidth="lg" sx={{ mt: 5, background: "linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 0%, rgba(0,212,255,1) 100%)"}}>
+    <Container
+      maxWidth="lg"
+      sx={{
+        mt: 5,
+        background: "linear-gradient(to bottom right, #00203FFF, #ADEFD1FF)",
+        padding: "20px",
+        borderRadius: "15px",
+        boxShadow: "0 4px 10px rgba(0, 0, 0, 0.3)",
+      }}
+    >
       <Box
         sx={{
           display: "flex",
@@ -110,27 +122,34 @@ const Profile = () => {
             p: 4,
             mb: 3,
             borderRadius: 10,
-            bgcolor: "#0096c7",
+            backgroundColor: "#1c4e80",
+            boxShadow: "0 4px 20px rgba(0,0,0,0.2)",
+            transform: "scale(1)",
+            transition: "transform 0.3s ease-in-out",
+            "&:hover": {
+              transform: "scale(1.05)",
+            },
           }}
         >
           <CardContent>
             <CardMedia
               component="img"
-              sx={{ pt: 2, height: 250, borderRadius: "5%" }}
+              sx={{ pt: 2, height: 250, borderRadius: "5%", transition: "transform 0.3s ease-in-out" }}
               image={imageUrl ? imageUrl : "/default-avatar.png"}
               alt="Profile Picture"
+              onMouseOver={(e) => e.currentTarget.style.transform = 'scale(1.1)'}
+              onMouseOut={(e) => e.currentTarget.style.transform = 'scale(1)'}
             />
-            <Typography variant="h5" sx={{ mt: 2, mb: 1, fontWeight: 700 }}>
+            <Typography variant="h5" sx={{ mt: 2, mb: 1, fontWeight: 700, color: "#FFF" }}>
               {name}
             </Typography>
             <Typography
               variant="subtitle2"
-              color="text.secondary"
-              sx={{ mb: 1.5 }}
+              sx={{ mb: 1.5, color: "#EEE" }}
             >
               {title}
             </Typography>
-            <Typography variant="body2" color="text.secondary">
+            <Typography variant="body2" sx={{ color: "#DDD" }}>
               {email}
             </Typography>
           </CardContent>
@@ -147,43 +166,77 @@ const Profile = () => {
                 borderRadius: 10,
                 padding: 1,
                 color: "#fff",
+                boxShadow: "0 4px 10px rgba(0, 0, 0, 0.3)",
               }}
             >
               Technical Skills
             </Typography>
           </Grid>
           <Grid item xs={6}>
-            <Typography variant="body1" gutterBottom>
+            <Typography variant="body1" sx={{ color: "#FFF" }} gutterBottom>
               Programming Languages:
-              </Typography>
-              <Box display="flex" flexWrap="wrap" gap={2}>
-                {programmingLanguages.map((language) => (
-                  <Chip key={language} label={language} variant="outlined" />
-                ))}
-              </Box>
-            
+            </Typography>
+            <Box display="flex" flexWrap="wrap" gap={2}>
+              {programmingLanguages.map((language) => (
+                <Chip
+                  key={language}
+                  label={language}
+                  variant="outlined"
+                  sx={{
+                    color: "#FFF",
+                    borderColor: "#FFF",
+                    transition: "transform 0.3s ease-in-out",
+                    "&:hover": {
+                      transform: "scale(1.1)",
+                    },
+                  }}
+                />
+              ))}
+            </Box>
           </Grid>
           <Grid item xs={6}>
-            <Typography variant="body1" gutterBottom>
+            <Typography variant="body1" sx={{ color: "#FFF" }} gutterBottom>
               Frameworks:
-              </Typography>
-              <Box display="flex" flexWrap="wrap" gap={2}>
-                {frameworks.map((framework) => (
-                  <Chip key={framework} label={framework} variant="outlined" />
-                ))}
-              </Box>
-            
+            </Typography>
+            <Box display="flex" flexWrap="wrap" gap={2}>
+              {frameworks.map((framework) => (
+                <Chip
+                  key={framework}
+                  label={framework}
+                  variant="outlined"
+                  sx={{
+                    color: "#FFF",
+                    borderColor: "#FFF",
+                    transition: "transform 0.3s ease-in-out",
+                    "&:hover": {
+                      transform: "scale(1.1)",
+                    },
+                  }}
+                />
+              ))}
+            </Box>
           </Grid>
           <Grid item xs={6}>
-            <Typography variant="body1" gutterBottom>
+            <Typography variant="body1" sx={{ color: "#FFF" }} gutterBottom>
               Libraries:
-              </Typography>
-              <Box display="flex" flexWrap="wrap" gap={2}>
-                {libraries.map((library) => (
-                  <Chip key={library} label={library} variant="outlined" />
-                ))}
-              </Box>
-            
+            </Typography>
+            <Box display="flex" flexWrap="wrap" gap={2}>
+              {libraries.map((library) => (
+                <Chip
+                  key={library}
+                  label={library}
+                  variant="outlined"
+                  sx={{
+                    color: "#FFF",
+                    borderColor: "#FFF",
+                    transition: "transform 0.3s ease-in-out",
+                    "&:hover": {
+                      transform: "scale(1.1)",
+                    },
+                  }}
+                />
+              ))}
+            </Box>
           </Grid>
         </Grid>
 
@@ -197,8 +250,13 @@ const Profile = () => {
               ml: 2,
               backgroundColor: uploading ? "#adb5bd" : "#343a40",
               color: uploading ? "#6c757d" : "#fff",
+              transition: "transform 0.3s ease-in-out",
               "&:hover": {
                 backgroundColor: uploading ? "#adb5bd" : "#495057",
+                transform: "scale(1.1)",
+              },
+              "&:active": {
+                transform: "scale(0.9)",
               },
             }}
           >
