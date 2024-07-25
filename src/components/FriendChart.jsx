@@ -15,7 +15,7 @@ import './FriendChart.css';
 const FriendChart = () => {
   const [friendCounts, setFriendCounts] = useState({});
 
-  const baseUrl = "http://localhost:3000";
+  const baseUrl = "https://dost-backend.onrender.com";
 
   const colors = ["#FF5733", "#33FF57", "#5733FF", "#FFC300", "#0099FF"];
 
