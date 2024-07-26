@@ -53,7 +53,7 @@ function Navbar() {
 
   const [image_url, setImageUrl] = useState("");
 
-  const baseUrl = "http://localhost:3000";
+  const baseUrl = "https://dost-backend.onrender.com";
 
   useEffect(() => {
     const fetchData = async () => {
